@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这里最外层使用LinearLayout定义了一个半透明的背景-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:background="#8000">
+
+    <!--用TextView定义了一个标题-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="预报"
+        android:textColor="#fff"
+        android:textSize="20sp"/>
+    <!--LinearLayout用于显示未来几天天气的布局
+    这个布局中没有放入任何内容，因为这是要根据服
+    务器返回的数据在代码中动态添加的-->
+    <LinearLayout
+        android:id="@+id/forecast_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.coolweather;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,6 +90,29 @@ public class ChooseAreaFragment extends Fragment {
                     selectedCity = cityList.get(position);
                     //查询县
                     queryCounties();
+                }else if (currentLevel == LEVEL_COUNTY){
+                    //从县列表中得到weatherId
+                    String weatherId = countyList.get(position).getWeatherId();
+
+                    /*
+                    * instanceof判断一个对象是否属于一个类，这里判断碎片
+                    * 是否在MainActivity
+                    * */
+                    if (getActivity() instanceof MainActivity){
+                        //跳转到天气界面
+                        Intent intent = new Intent(getActivity(),WeatherActivity.class);
+                        //跳转过程中传递weatherId
+                        intent.putExtra("weather_id",weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                        //如果碎片在WeatherActivity中
+                    }else if (getActivity() instanceof WeatherActivity){
+                        //获取WeatherActivity对象，并用来调用drawerLayout.closeDrawers()关闭菜单
+                        //请求新城市的天气信息
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.requestWeather(weatherId);
+                    }
                 }
             }
         });

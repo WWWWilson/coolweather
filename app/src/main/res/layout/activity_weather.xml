@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--最外层用了FrameLayout并设置背景色为紫色
+然后在其中嵌套一个ScrollView，由于ScrollView中
+只能嵌套一个子布局，里嵌套一个LinearLayout然后在
+其中引入其他xml-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_primary"
+    tools:context=".WeatherActivity">
+
+    <!--FrameLayout默认情况下会把控件放到左上角
+    因此ScrollView会完全覆盖住ImageView，
+    从而ImageView就成了背景图-->
+    <ImageView
+        android:id="@+id/weather_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
+    <!--加入滑动菜单-->
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/weather_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <!--加入下拉刷新的SmartRefreshLayout-->
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/weather_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlPrimaryColor="@color/design_default_color_primary">
+    <ScrollView
+        android:id="@+id/weather_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:fitsSystemWindows="true">
+
+            <include layout="@layout/title"/>
+
+            <include layout="@layout/now"/>
+
+            <include layout="@layout/forecast"/>
+
+            <include layout="@layout/aqi"/>
+
+            <include layout="@layout/suggestion"/>
+        </LinearLayout>
+    </ScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <!--加入切换城市天气的碎片-->
+        <fragment
+            android:id="@+id/weather_fragment_choose_area"
+            android:name="com.example.coolweather.ChooseAreaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"/>
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</FrameLayout>

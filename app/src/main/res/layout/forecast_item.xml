@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--定义了未来天气信息的子项布局-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp">
+
+    <!--子项中放置了4个TextView，一个用于显示天气预报日期
+    一个用于显示天气概况，另外两个显示当天的最高和最低温-->
+    <TextView
+        android:id="@+id/forecast_item_tv_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_gravity="center_vertical"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/forecast_item_tv_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/forecast_item_tv_max"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="right"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/forecast_item_tv_min"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="right"
+        android:textColor="#fff"/>
+
+
+</LinearLayout>
